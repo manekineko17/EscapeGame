@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Détails des scénario
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Détails des scénario d'escape game</h1>
+
+        {% for game in games %}
+
+        <h3>{{ game.title }}</h3>
+
+            <p>Lieu : {{ game.place }}</p>
+            <p>Durée : {{ game.duration }}</p>
+            <p>Nombre maximum de joueurs : {{ game.playersMax }}</p>
+            <p>Description : {{ game.description }}</p>
+            {# <p>{{ game.photo}}</p> #}
+            <button type="submit" class="btn btn-lg btn-success">
+                Réserver</button>
+        {% endfor %}
+
+</div>
+{% endblock %}

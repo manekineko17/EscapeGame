@@ -1,0 +1,20 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %} Edit User {{ parent() }} {% endblock %}
+
+{% block body %}
+<div class="row">
+			<div class="col-8">
+				<br>
+				<h3>Modifier un user</h3>
+				{{ form_start(userForm) }}
+				{{ form_widget(userForm) }}
+				<button type="submit" class="btn btn-primary">
+					<i class="fas fa-edit"></i>
+				</button>
+				<br><br>
+				{{ form_end(userForm) }}
+			</div>
+</div>
+
+{% endblock %}

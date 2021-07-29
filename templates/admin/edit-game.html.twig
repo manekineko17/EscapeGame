@@ -1,0 +1,23 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %} Ajouter un game {{ parent() }} {% endblock %}
+
+{% block body %}
+<div class="row">
+			<div class="col-2"></div>
+                <div class="col-8">
+                    <br>
+                    <h3>Ajouter un scénario de game</h3>
+                    
+                        {{ form_start(addGameForm) }}
+                            {{ form_widget(addGameForm) }}
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <br>
+                            <br>
+                        {{ form_end(addGameForm) }}
+                </div>
+            </div>
+
+{% endblock %}

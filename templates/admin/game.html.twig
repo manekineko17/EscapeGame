@@ -1,0 +1,65 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %} Games {{ parent() }} {% endblock %}
+
+{% block body %}
+<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<br>
+				<h3>Gérer les games</h3>
+			</div>
+
+            <br>
+
+            <div>Rechercher un game
+                <input id="myInput" type="text" placeholder="Rechercher...">
+            </div>
+            <br>
+            <div>Ajouter un nouveau game
+                {# ?????? utile ou pas de vérifier ici si c'est un admin ?????? #}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin_add_game')}}" class="btn btn-success">
+                        Ajouter <i class="fas fa-plus"></i>
+                    </a>
+                {% endif %}
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Titre de l'escape game</th>
+                        <th>Lieu</th>
+                        <th>Durée</th>
+                        <th>Nombre de joueurs maximum</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    {% for game in games %}
+                    <tr>
+                        <td>{{ game.title }}</td>
+                        <td>{{ game.place }}</td>
+                        <td>{{ game.duration }}</td>
+                        <td>{{ game.playersMax }}</td>
+                        <td>
+                            <a onclick="return confirm('Voulez vous supprimer {{ game.title }}?')" 
+                            href="{{ path('delete_game', { 'id': game.id} )}}" class="btn btn-danger">
+                                Supprimer <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a 
+                            href="{{ path('edit_game', { 'id': game.id} )}}" 
+                             class="btn btn-success">
+                                Modifier <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+		</div>
+
+
+{% endblock %}

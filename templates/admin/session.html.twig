@@ -1,0 +1,29 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %} Séances {{ parent() }} {% endblock %}
+
+{% block body %}
+<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<br>
+				<h3>Gérer les séances</h3>
+			</div>
+
+              
+
+
+
+
+            <a 
+            href="{{ path('admin_add_session')}}" 
+                class="btn btn-success">
+                Ajouter <i class="fas fa-plus"></i>
+            </a>
+
+
+
+		</div>
+
+
+{% endblock %}
