@@ -7,13 +7,14 @@
 			<div class="col-2"></div>
                 <div class="col-8">
                     <br>
-                    <h3>Ajouter une séance</h3>
+                    <h3>Ajouter ou modifier une séance</h3>
                     
                         {{ form_start(addSessionForm) }}
                             {{ form_widget(addSessionForm) }}
                             <button type="submit" class="btn btn-success" href="{{ path('admin_session')}}">
-                                <i class="fas fa-plus"></i>
+                               Valider
                             </button>
+
                             <br>
                             <br>
                         {{ form_end(addSessionForm) }}

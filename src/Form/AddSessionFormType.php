@@ -21,8 +21,7 @@ class AddSessionFormType extends AbstractType
 
             ])
             //choice label va chercher le title dans game et afficher un menu déroulant
-            ->add('game', null, ['label' => 'Game', 'choice_label' => 'title'])
-            ->add('users', null, ['label' => 'Utilisateur', 'choice_label' => 'fullname']);
+            ->add('game', null, ['label' => 'Game', 'choice_label' => 'title']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

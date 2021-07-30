@@ -10,16 +10,18 @@
 
         {% for game in games %}
 
-        <h3>{{ game.title }}</h3>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ game.photo }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">{{ game.title }}</h5>
+                <p>Lieu : {{ game.place }}</p>
+                <p>Durée : {{ game.duration }}</p>
+                <p>Nombre maximum de joueurs : {{ game.playersMax }}</p>
+                <p class="card-text">{{ game.description }}</p>
+                <a class="btn btn-success" href="{{ path('session')}}">Réserver</a>
+                </div>
+            </div>
 
-            <p>Lieu : {{ game.place }}</p>
-            <p>Durée : {{ game.duration }}</p>
-            <p>Nombre maximum de joueurs : {{ game.playersMax }}</p>
-            <p>Description : {{ game.description }}</p>
-            {# <p>{{ game.photo}}</p> #}
-            <button type="submit" class="btn btn-lg btn-success">
-                Réserver</button>
         {% endfor %}
-
 </div>
 {% endblock %}

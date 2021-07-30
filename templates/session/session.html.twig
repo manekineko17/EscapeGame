@@ -1,12 +1,60 @@
-{% extends 'dashboard.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Gérer les sessions{% endblock %}
+{% block title %}Voir les séances disponibles{% endblock %}
+{% block style %}
+
+    <style>
+        /*
+        .container-calendar{
+            height: 500px;
+            width : 700px;
+            background-color: lightgray;
+        }
+        .column-calendar{
+            width: 100px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+	    }
+         */
+        .seance{
+            height: 50px;
+            padding: 10px;
+        }
+       
+        .rdv{
+            height: 30px;	
+            background-color: beige;
+            padding : 10px;
+        }
+        .gris{
+            background-color: lightgray;
+        }
+        .gris-f{
+            background-color: #ddd;
+        }
+    </style>
+
+{% endblock %}
 
 {% block body %}
+<h1>Voir les séances disponibles</h1>
+<div class="row">
+    
 
-<div class="example-wrapper">
-    <h1>Gérer les sessions</h1>
+    {% for jour in tabWeek %}
+        <div class="col-1">
+            
+            {% for seance in jour %}
+                <div class="seance gris-f">
+                    {% if seance %}
+                    <div class="rdv">{{ seance }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
 
+        </div>
+	{% endfor %}
     
 </div>
 {% endblock %}

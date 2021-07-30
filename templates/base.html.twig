@@ -35,7 +35,6 @@
                 
                 <ul class="navbar-nav ml-auto">
 
-                    <!-- surbrillance si actif-->
                     <li class="nav-item   {% if route_name == "home" %}active{% endif %}">
                         <a class="nav-link" href="{{ path('home' )}}">Accueil
                             {% if route_name == "home" %}<span class="sr-only">(current)</span>{% endif %}
@@ -47,12 +46,35 @@
                             {% if route_name == "game" %}<span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
+
+                    <li class="nav-item   {% if route_name == "session" %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('session' )}}">Réserver une séance
+                            {% if route_name == "session" %}<span class="sr-only">(current)</span>{% endif %}
+                        </a>
+                    </li>
+
+                    <li class="nav-item {% if route_name == "app_login" %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('app_login' )}}">Me connecter</a>
+                    </li>
+
+                    <li class="nav-item {% if route_name == "app_register" %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('app_register' )}}">S'enregister</a>
+                    </li>
+
+
+                    {%  if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item {% if route_name == "booking" %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('booking' )}}">Mon compte</a>
+                        </li>
+                    {% else %}
                         <li class="nav-item {% if route_name == "app_login" %}active{% endif %}">
                             <a class="nav-link" href="{{ path('app_login' )}}">Me connecter</a>
                         </li>
+
                         <li class="nav-item {% if route_name == "app_register" %}active{% endif %}">
                             <a class="nav-link" href="{{ path('app_register' )}}">S'enregister</a>
                         </li>
+                    {% endif %}
                   
                 </ul>
             </div>

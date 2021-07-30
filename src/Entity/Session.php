@@ -35,6 +35,12 @@ class Session
      */
     private $users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Availability::class, inversedBy="id_session")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $availability;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -89,6 +95,18 @@ class Session
     public function removeUser(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    public function getAvailability(): ?Availability
+    {
+        return $this->availability;
+    }
+
+    public function setAvailability(?Availability $availability): self
+    {
+        $this->availability = $availability;
 
         return $this;
     }

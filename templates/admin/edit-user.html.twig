@@ -9,8 +9,8 @@
 				<h3>Modifier un user</h3>
 				{{ form_start(userForm) }}
 				{{ form_widget(userForm) }}
-				<button type="submit" class="btn btn-primary">
-					<i class="fas fa-edit"></i>
+				<button type="submit" class="btn btn-success" href="{{ path('admin_users')}}">
+					Valider
 				</button>
 				<br><br>
 				{{ form_end(userForm) }}

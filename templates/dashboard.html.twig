@@ -44,7 +44,11 @@
                         <a class="btn btn-outline-light" href="{{path('app_logout')}}">Me déconnecter <i class="fas fa-sign-out-alt"></i></a>   
                     </li>
 
+                {# user #}
                 {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('home' )}}">Accueil</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('booking' )}}">Gérer mes réservations</a>
                     </li>

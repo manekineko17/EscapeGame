@@ -8,32 +8,17 @@
 
     <div class="row">
         <div class="col-10">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Titre de l'escape game</th>
-                        <th>Lieu</th>
-                        <th>Durée</th>
-                        <th>Nombre de joueurs maximum</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for game in games %}
-                    <tr>
-                        <td>{{ game.title }}</td>
-                        <td>{{ game.place }}</td>
-                        <td>{{ game.duration }}</td>
-                        <td>{{ game.playersMax }}</td>
-                        <td>
-                            <a href="{{ path('game', {'id':game.id }) }}" class="btn btn-success">Voir en détail</a>
-                        </td>
-                        {# <td>
-                            <a href="{{ path('booking', {'id':game.id }) }}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                        </td> #}
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+
+                {% for game in games %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ game.photo }}" class="card-img-top" alt="{{ game.title }}">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ game.title }}</h5>
+                        <a href="{{ path('game', {'id':game.id }) }}" class="btn btn-success">Voir en détail</a>
+                        <a class="btn btn-success" href="{{ path('session')}}">Réserver</a>
+                        </div>
+                    </div>
+                {% endfor %}
         </div>
     </div>
 

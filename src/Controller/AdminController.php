@@ -25,7 +25,7 @@ class AdminController extends AbstractController
         return $this->render('admin/game.html.twig');
     }
 
-    /******************************** USERS *******************************/
+    /************************************** USERS ********************************************/
     #[Route('/admin/users', name: 'admin_users')]
     public function users(
         UserRepository $repo,
@@ -55,7 +55,7 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('admin_users');
         }
 
         return $this->render('admin/edit-user.html.twig', [
@@ -63,7 +63,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /********************************* scenario ******************************/
+    /******************************************* game **************************************/
     #[Route('/admin/game', name: 'admin_game')]
     public function game(GameRepository $repo): Response
     {
@@ -84,7 +84,7 @@ class AdminController extends AbstractController
             $em->persist($game);
             $em->flush();
         }
-        return $this->render('admin/edit-game.html.twig', [
+        return $this->render('admin/game.html.twig', [
             'addGameForm' => $form->createView(),
         ]);
     }
@@ -114,7 +114,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /****************************** SESSION **********************************/
+    /************************************ SESSION ****************************************/
     #[Route('/admin/session', name: 'admin_session')]
     public function index(SessionRepository $repo): Response
     {
@@ -136,7 +136,7 @@ class AdminController extends AbstractController
             $em->persist($session);
             $em->flush();
         }
-        return $this->render('admin/edit-session.html.twig', [
+        return $this->render('admin/session.html.twig', [
             'addSessionForm' => $form->createView(),
         ]);
     }
