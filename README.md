@@ -1,4 +1,4 @@
-# Escape-Game
+# Escape-Game booking website with Symfony, Twig, SQL, Bootstrap
 
 Site internet de gestion d'un escape game (suite à la formation PHP suivie en 2 mois) :
  - création et gestion de compte utilisateur
