@@ -1,60 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voir les séances disponibles{% endblock %}
-{% block style %}
-
-    <style>
-        /*
-        .container-calendar{
-            height: 500px;
-            width : 700px;
-            background-color: lightgray;
-        }
-        .column-calendar{
-            width: 100px;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-	    }
-         */
-        .seance{
-            height: 50px;
-            padding: 10px;
-        }
-       
-        .rdv{
-            height: 30px;	
-            background-color: beige;
-            padding : 10px;
-        }
-        .gris{
-            background-color: lightgray;
-        }
-        .gris-f{
-            background-color: #ddd;
-        }
-    </style>
-
-{% endblock %}
+{% block title %}Réserver une séance{% endblock %}
 
 {% block body %}
-<h1>Voir les séances disponibles</h1>
-<div class="row">
-    
 
-    {% for jour in tabWeek %}
-        <div class="col-1">
-            
-            {% for seance in jour %}
-                <div class="seance gris-f">
-                    {% if seance %}
-                    <div class="rdv">{{ seance }}</div>
+<h1>Réserver une séance</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+      <tr>
+        {% for day,slots in dates %}
+            <th>{{ day }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for i in 0..7 %}
+            <tr>
+                {% for day,slots in dates %}
+                    <td>
+                        <a href="#" class="btn btn-success">{{ slots[i] }}</a>
+                    </td> 
+                {% endfor %}
+
+                {# {% for day,slots in dates %}
+                    {% if slots[day][i] == 0  %}
+                        <td>
+                            <a href="#" class="btn btn-success">{{slots[i]}}</a>
+                        </td>
+                    {% else %}
+                        <td >
+                            <span class="btn btn-danger">{{slots[i]}}</span>
+                        </td>
                     {% endif %}
-                </div>
-            {% endfor %}
+                {% endfor %} #}
 
-        </div>
-	{% endfor %}
-    
-</div>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{# nb de participants #}
+{# {% for player in range(0, 3) %}
+    {{ player }}
+{% endfor %} #}
+
 {% endblock %}

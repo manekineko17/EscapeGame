@@ -4,19 +4,170 @@
 
 {% block body %}
 <div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-				<br>
-				<h3>Gérer les séances</h3>
-			</div>
+	<h1>Gérer les séances</h1>
 
-            <a 
-            href="{{ path('admin_add_session')}}" 
-                class="btn btn-success">
-                Ajouter <i class="fas fa-plus"></i>
-            </a>
+	</div>
+		<a 
+		href="{{ path('add_session')}}" 
+			class="btn btn-success">
+			Ajouter une séance<i class="fas fa-plus"></i>
+		</a>
+	</div>
+	<div class="row">
+		
+		<table class="table table-bordered">
+			<thead>
+			  <tr>
+				<th scope="col">Date</th>
+			  </tr>
+			</thead>
+			<tbody>
+				
+			{% for day,slots in dates %}
 
-		</div>
+				{% if day in dates_bdd|keys %}
+						<div class="col-1">
+								<tr>
+									<td scope="row">{{ day }}</td>
+
+									{% if dates_bdd[day][0] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[0]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[0]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][1] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[1]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[1]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][2] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[2]}}</a>
+										</td>									
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[2]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][3] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[3]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[3]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][4] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[4]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[4]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][5] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[5]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[5]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][6] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[6]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[6]}}</span>
+										</td>
+									{% endif %}
+
+									{% if dates_bdd[day][7] == 0  %}
+										<td>
+											<a href="#" class="btn btn-success">{{slots[7]}}</a>
+										</td>
+									{% else %}
+										<td >
+											<span class="btn btn-danger">{{slots[7]}}</span>
+										</td>
+									{% endif %}
+								</tr>
+						</div>
+				{% else %}
+						<div class="col-1">
+							<tr>
+								<td scope="row">{{ day }}</td>
+								<td>{{slots[0]}}</td>
+								<td>{{slots[1]}}</td>
+								<td>{{slots[2]}}</td>
+								<td>{{slots[3]}}</td>
+								<td>{{slots[4]}}</td>
+								<td>{{slots[5]}}</td>
+								<td>{{slots[6]}}</td>
+								<td>{{slots[7]}}</td>							
+							</tr>
+						</div>
+				{% endif %}
+
+			{% endfor %}
+			</tbody>
+		</table>
+		
+
 
 
 {% endblock %}
+
+
+{# 
+{% for jour in tabWeek %}
+<div class="col-1">
+	
+
+	{% for seance in jour %}
+		<div class="seance gris-f">
+
+			{% if seance %}
+			<div class="rdv">{{ seance }}</div>
+			{% endif %}
+		</div>
+		<a 
+		href="{{ path('delete_session', { 'id': session.id} )}}" 
+			class="btn btn-danger">
+			Supprimer<i class="fas fa-trash"></i>
+		</a>
+	{% endfor %}
+
+</div>
+{% endfor %} #}
+
+{# {% if slot == getSlot10h() %}
+<td>  </td>
+{% else %}
+<td>{{ slot }}</td>
+{% endif %} #}
+
+	{# test
+		{% if 3 in [1,2,3,5] %}
+
+				<h1>321321321</h1>
+
+				{% endif %} #}

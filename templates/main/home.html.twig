@@ -6,21 +6,28 @@
 
 <h1>Liste des escape Games</h1>
 
-    <div class="row">
-        <div class="col-10">
+        <div class="d-flex">
+            <div class="row ">
+
 
                 {% for game in games %}
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ game.photo }}" class="card-img-top" alt="{{ game.title }}">
-                        <div class="card-body">
-                        <h5 class="card-title">{{ game.title }}</h5>
-                        <a href="{{ path('game', {'id':game.id }) }}" class="btn btn-success">Voir en détail</a>
-                        <a class="btn btn-success" href="{{ path('session')}}">Réserver</a>
+                    <div class="card my-3 " style="width: 18rem;">
+                            <div class="col col-sm col-md col-lg">
+
+                            <img src="{{ game.photo }}" class="card-img-top" alt="{{ game.title }}">
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ game.title }}</h5>
+                                <a href="{{ path('game', {'id':game.id }) }}" class="btn btn-success">Voir en détail</a>
+                                <a class="btn btn-success" href="{{ path('session')}}">Réserver</a>
+                            </div>
+                        
                         </div>
                     </div>
+            </div>
+
                 {% endfor %}
         </div>
-    </div>
 
 {% endblock %}
 

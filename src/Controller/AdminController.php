@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\UserFormType;
 use App\Form\AddGameFormType;
 use App\Form\AddSessionFormType;
+use App\Repository\DayRepository;
 use App\Repository\GameRepository;
 use App\Repository\SessionRepository;
 use App\Repository\UserRepository;
@@ -63,7 +64,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /******************************************* game **************************************/
+    /******************************************* GAME **************************************/
     #[Route('/admin/game', name: 'admin_game')]
     public function game(GameRepository $repo): Response
     {
@@ -83,9 +84,10 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($game);
             $em->flush();
+            return $this->redirectToRoute('admin_game');
         }
-        return $this->render('admin/game.html.twig', [
-            'addGameForm' => $form->createView(),
+        return $this->render('admin/edit-game.html.twig', [
+            'addGameForm' => $form->createView()
         ]);
     }
 
@@ -109,23 +111,55 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_game');
         }
 
-        return $this->render('admin/game.html.twig', [
+        return $this->render('admin/edit-game.html.twig', [
             'editGameForm' => $form->createView()
         ]);
     }
 
     /************************************ SESSION ****************************************/
     #[Route('/admin/session', name: 'admin_session')]
-    public function index(SessionRepository $repo): Response
+    public function index(DayRepository $repo): Response
     {
-        $session = $repo->findAll();
+        $days_bdd = $repo->findAll();
+        // focniton magic
 
+        // dd($days_bdd);
+
+        $beginDate = new \DateTime('2021-08-02');
+        $endDate = new \DateTime('2021-08-07');
+
+        $daterange = new \DatePeriod($beginDate, new \DateInterval('P1D'), $endDate);
+        $dates = array();
+        foreach ($daterange as $date) {
+            $slots = array();
+            $beginSlot = new \DateTime('09:00');
+            $endSlot = new \DateTime('18:00');
+            $slotRange = new \DatePeriod($beginSlot, new \DateInterval('PT1H'), $endSlot);
+            foreach ($slotRange as $slot) {
+                if ($slot->format("H:i") == "13:00") {
+                    continue;
+                }
+                array_push($slots, $slot->format("H:i"));
+            }
+            $dates[$date->format("Y-m-d")] = $slots;
+        }
+
+        $dates_bdd = array();
+        foreach ($days_bdd as $not_available) {
+            $key = $not_available->getDate()->format("Y-m-d");
+            $dates_bdd[$key] = [$not_available->getSlot9h(), $not_available->getSlot10h(), $not_available->getSlot11h(), $not_available->getSlot12h(), $not_available->getSlot14h(), $not_available->getSlot15h(), $not_available->getSlot16h(), $not_available->getSlot17h()];
+        }
+
+
+        // dd($dates);
         return $this->render('admin/session.html.twig', [
-            'sessions' => $session,
+            'sessions' => $days_bdd,
+            'dates' => $dates,
+            "dates_bdd" => $dates_bdd
         ]);
     }
 
-    #[Route('/admin/add-session', name: 'admin_add_session')]
+    #[Route('/admin/add-session', name: 'add_session')]
     public function addSession(Request $req, EntityManagerInterface $em): Response
     {
         $session = new Session();
@@ -135,10 +169,19 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($session);
             $em->flush();
+            return $this->redirectToRoute('admin_session');
         }
-        return $this->render('admin/session.html.twig', [
+        return $this->render('admin/add-session.html.twig', [
             'addSessionForm' => $form->createView(),
         ]);
+    }
+
+    #[Route('/admin/delete-session/{id}', name: 'delete_session')]
+    public function deleteSession(Session $session, EntityManagerInterface $em): Response
+    {
+        $em->remove($session);
+        $em->flush();
+        return $this->redirectToRoute('admin_session');
     }
 
 

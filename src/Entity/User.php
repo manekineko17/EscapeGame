@@ -58,9 +58,15 @@ class User implements UserInterface
      */
     private $phone;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Day::class, mappedBy="usersOfTheDay")
+     */
+    private $days;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
+        $this->days = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,6 +214,33 @@ class User implements UserInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Day[]
+     */
+    public function getDays(): Collection
+    {
+        return $this->days;
+    }
+
+    public function addDay(Day $day): self
+    {
+        if (!$this->days->contains($day)) {
+            $this->days[] = $day;
+            $day->addUsersOfTheDay($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDay(Day $day): self
+    {
+        if ($this->days->removeElement($day)) {
+            $day->removeUsersOfTheDay($this);
+        }
 
         return $this;
     }

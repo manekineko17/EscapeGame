@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Game
      * @ORM\Column(type="integer")
      */
     private $playersMax;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Day::class, mappedBy="gamesOfTheDay")
+     */
+    private $days;
+
+    public function __construct()
+    {
+        $this->days = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,33 @@ class Game
     public function setPlayersMax(int $playersMax): self
     {
         $this->playersMax = $playersMax;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Day[]
+     */
+    public function getDays(): Collection
+    {
+        return $this->days;
+    }
+
+    public function addDay(Day $day): self
+    {
+        if (!$this->days->contains($day)) {
+            $this->days[] = $day;
+            $day->addGamesOfTheDay($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDay(Day $day): self
+    {
+        if ($this->days->removeElement($day)) {
+            $day->removeGamesOfTheDay($this);
+        }
 
         return $this;
     }
