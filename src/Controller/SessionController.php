@@ -44,17 +44,7 @@ class SessionController extends AbstractController
         }
 
         //nb de participants
-        // $player = 0;
-        // for ($player = 0; $player < 5; $player++) {
-        //     dd($player);
-        // }
 
-        // while ($player < 5) {     
-        //     $player;
-        //     $player++; 
-        // }
-
-        //prix par participants
 
         //prix total
 

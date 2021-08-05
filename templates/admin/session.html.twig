@@ -16,118 +16,39 @@
 	<div class="row">
 		
 		<table class="table table-bordered">
+
 			<thead>
 			  <tr>
-				<th scope="col">Date</th>
+				{% for day,slots in dates %}
+					<th>{{ day }}</th>
+				{% endfor %}
 			  </tr>
 			</thead>
+		
 			<tbody>
-				
-			{% for day,slots in dates %}
-
-				{% if day in dates_bdd|keys %}
-						<div class="col-1">
-								<tr>
-									<td scope="row">{{ day }}</td>
-
-									{% if dates_bdd[day][0] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[0]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[0]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][1] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[1]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[1]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][2] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[2]}}</a>
-										</td>									
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[2]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][3] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[3]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[3]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][4] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[4]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[4]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][5] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[5]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[5]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][6] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[6]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[6]}}</span>
-										</td>
-									{% endif %}
-
-									{% if dates_bdd[day][7] == 0  %}
-										<td>
-											<a href="#" class="btn btn-success">{{slots[7]}}</a>
-										</td>
-									{% else %}
-										<td >
-											<span class="btn btn-danger">{{slots[7]}}</span>
-										</td>
-									{% endif %}
-								</tr>
-						</div>
-				{% else %}
-						<div class="col-1">
-							<tr>
-								<td scope="row">{{ day }}</td>
-								<td>{{slots[0]}}</td>
-								<td>{{slots[1]}}</td>
-								<td>{{slots[2]}}</td>
-								<td>{{slots[3]}}</td>
-								<td>{{slots[4]}}</td>
-								<td>{{slots[5]}}</td>
-								<td>{{slots[6]}}</td>
-								<td>{{slots[7]}}</td>							
-							</tr>
-						</div>
-				{% endif %}
-
-			{% endfor %}
+				{% for i in 0..7 %}
+					<tr>
+		
+						{% for day,slots in dates %}
+							{% if day in dates_bdd|keys %}
+								{% if dates_bdd[day][i] == 0  %}
+									<td>
+										<a href="#" class="btn btn-success">{{slots[i]}}</a>
+									</td>
+								{% else %}
+									<td >
+										<span class="btn btn-danger">{{slots[i]}}</span>
+									</td>
+								{% endif %}
+							{% else %}
+								<td>
+									<a href="#" class="btn btn-success">{{slots[i]}}</a>
+								</td>
+							{% endif %}
+						{% endfor %} 
+		
+					</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 		

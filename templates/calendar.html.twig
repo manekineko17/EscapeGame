@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
     
@@ -33,6 +34,44 @@
     </tbody>
 </table>
 
+<section data-model="products">
+	<div class="container">
+	<div class="row">
+
+        <div class="control">
+            <button class="bttn bttn-left" id="minus">
+               <span>-</span>
+            </button>
+            <input type="number" class="input" id="input">
+            <button class="bttn bttn-right" id="plus">
+              <span>+</span>
+            </button>
+        </div>
+
+	</div>
+	</div>
+</section>
+
+<script>
+    var minus = document.querySelector("#minus");
+    var plus = document.querySelector("#plus");
+    var input = document.querySelector("#input");
+    var quantity = 1;
+
+    input.value = quantity;
+
+    minus.addEventListener('click', function(event){
+    if (quantity > 1) {
+        quantity --;
+        input.value = quantity;
+    }
+    });
+
+    plus.addEventListener('click', function(event){
+    quantity ++;
+    input.value = quantity;
+    });
+</script>
 
 </body>
 </html>

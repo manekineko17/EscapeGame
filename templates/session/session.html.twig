@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h1>Réserver une séance</h1>
+<h1>Choisissez une séance</h1>
 
 <table class="table table-bordered">
 
@@ -19,33 +19,82 @@
     <tbody>
         {% for i in 0..7 %}
             <tr>
-                {% for day,slots in dates %}
-                    <td>
-                        <a href="#" class="btn btn-success">{{ slots[i] }}</a>
-                    </td> 
-                {% endfor %}
 
-                {# {% for day,slots in dates %}
-                    {% if slots[day][i] == 0  %}
+                {% for day,slots in dates %}
+                    {% if day in dates_bdd|keys %}
+                        {% if dates_bdd[day][i] == 0  %}
+                            <td>
+                                <a href="#" class="btn btn-success">{{slots[i]}}</a>
+                            </td>
+                        {% else %}
+                            <td >
+                                <span class="btn btn-danger">{{slots[i]}}</span>
+                            </td>
+                        {% endif %}
+                    {% else %}
                         <td>
                             <a href="#" class="btn btn-success">{{slots[i]}}</a>
                         </td>
-                    {% else %}
-                        <td >
-                            <span class="btn btn-danger">{{slots[i]}}</span>
-                        </td>
                     {% endif %}
-                {% endfor %} #}
+                {% endfor %} 
 
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
+<section data-model="products">
+	<div class="container">
+	<div class="row">
 
-{# nb de participants #}
-{# {% for player in range(0, 3) %}
-    {{ player }}
-{% endfor %} #}
+        <h3>Nombre de participants</h3>
+
+        <div class="control">
+            <button class="bttn bttn-left" id="minus">
+               <span>-</span>
+            </button>
+            <input type="number" class="input" id="input">
+            <button class="bttn bttn-right" id="plus">
+              <span>+</span>
+            </button>
+            <button class="btn btn-success">Appliquer</button>
+        </div>
+        <h3>Tarif total</h3>
+        <div>  
+            <input data-field="item-total-price" type=text value="0.00" readonly>           
+            <button class="btn btn-success">Réserver</button>
+        </div>
+
+	</div>
+	</div>
+</section>
+
 
 {% endblock %}
+
+{% block script %}
+    {{ parent() }}
+    <script>
+        var minus = document.querySelector("#minus");
+        var plus = document.querySelector("#plus");
+        var input = document.querySelector("#input");
+        var quantity = 1;
+
+        input.value = quantity;
+
+        minus.addEventListener('click', function(event){
+        if (quantity > 1) {
+            quantity --;
+            input.value = quantity;
+        }
+        });
+
+        plus.addEventListener('click', function(event){
+        quantity ++;
+        input.value = quantity;
+        });
+    </script>
+{% endblock %}
+
+
+

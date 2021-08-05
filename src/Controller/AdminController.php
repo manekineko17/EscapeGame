@@ -121,8 +121,6 @@ class AdminController extends AbstractController
     public function index(DayRepository $repo): Response
     {
         $days_bdd = $repo->findAll();
-        // focniton magic
-
         // dd($days_bdd);
 
         $beginDate = new \DateTime('2021-08-02');
@@ -149,7 +147,6 @@ class AdminController extends AbstractController
             $key = $not_available->getDate()->format("Y-m-d");
             $dates_bdd[$key] = [$not_available->getSlot9h(), $not_available->getSlot10h(), $not_available->getSlot11h(), $not_available->getSlot12h(), $not_available->getSlot14h(), $not_available->getSlot15h(), $not_available->getSlot16h(), $not_available->getSlot17h()];
         }
-
 
         // dd($dates);
         return $this->render('admin/session.html.twig', [
