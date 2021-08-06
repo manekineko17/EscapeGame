@@ -20,12 +20,11 @@
  
   {% set route_name = app.request.attributes.get('_route') %} 
       
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
+        <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary text-dark">
+            <div class="container px-5" style="height: 10rem;">
                 <a class="navbar-brand m-3" href="{{ path('home' )}}">
-                <span style="font-size: 30px; ">
-                    <img src="img/logo.png" alt="logo">
-                </span></a>
+                    <img src="{{ asset('img/logo.png')}}" alt="logo" class="text-dark">
+                </a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,19 +35,19 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item   {% if route_name == "home" %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('home' )}}">Accueil
+                        <a class="nav-link text-dark h-3" href="{{ path('home' )}}"><strong>Accueil</strong>
                             {% if route_name == "home" %}<span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
 
                     <li class="nav-item   {% if route_name == "game" %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('game' )}}">Escape games
+                        <a class="nav-link text-dark h-3" href="{{ path('game' )}}"><strong>Escape games</strong>
                             {% if route_name == "game" %}<span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
 
                     <li class="nav-item   {% if route_name == "session" %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('session' )}}">Réserver une séance
+                        <a class="nav-link text-dark h-3" href="{{ path('session' )}}"><strong>Réserver une séance</strong>
                             {% if route_name == "session" %}<span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
@@ -57,34 +56,32 @@
                     {# {%  if is_granted('IS_AUTHENTICATED_FULLY') %} #}
                     {%  if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item {% if route_name == "admin_game" %}active{% endif %}">
-                            <a class="nav-link" href="{{ path('admin_game' )}}">Mon compte</a>
+                            <a class="nav-link text-dark h-3" href="{{ path('admin_game' )}}"><strong>Mon compte</strong></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="btn btn-outline-light" href="{{path('app_logout')}}">Me déconnecter <i class="fas fa-sign-out-alt"></i></a>   
+                            <a class="btn btn-outline-light text-dark h-3" href="{{path('app_logout')}}"><strong>Me déconnecter</strong><i class="fas fa-sign-out-alt"></i></a>  
                         </li>
                         <li>
-                            <span class="ml-4 badge badge-success">Bonjour Admin</span>
+                            <span class="ml-4 ms-3 mt-2 badge badge-success text-dark h-3 bonjour-user"><strong>Bonjour Admin</strong></span>
                         </li>
                     {%  elseif is_granted('ROLE_USER') %}
                         <li class="nav-item {% if route_name == "booking" %}active{% endif %}">
-                            <a class="nav-link" href="{{ path('booking' )}}">Mon compte</a>
+                            <a class="nav-link text-dark h-3" href="{{ path('booking' )}}"><strong>Mon compte</strong></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="btn btn-outline-light" href="{{path('app_logout')}}">Me déconnecter <i class="fas fa-sign-out-alt"></i></a>   
+                            <a class="btn btn-outline-dark text-dark h-3" href="{{path('app_logout')}}"><strong>Me déconnecter</strong><i class="fas fa-sign-out-alt"></i></a>   
                         </li>
                         <li>
-                            <span class="ml-4 badge badge-success">Bonjour {{app.user.firstname}} {{app.user.lastname}}</span>
+                            <span class="ml-4 my-3 mt-5 badge badge-success text-dark h-3 bonjour-user"><strong>Bonjour {{app.user.firstname}} {{app.user.lastname}}</strong></span>
                         </li>
                     {% else %}
                         <li class="nav-item {% if route_name == "app_login" %}active{% endif %}">
-                            <a class="nav-link" href="{{ path('app_login' )}}">Me connecter</a>
+                            <a class="nav-link text-dark h-3 align-middle" href="{{ path('app_login' )}}"><strong>Me connecter</strong></a>
                         </li>
                         <li class="nav-item {% if route_name == "app_register" %}active{% endif %}">
-                            <a class="nav-link" href="{{ path('app_register' )}}">S'enregister</a>
+                            <a class="nav-link text-dark h-3" href="{{ path('app_register' )}}"><strong>S'enregister</strong></a>
                         </li>
                     {% endif %}
-
-
                   
                 </ul>
             </div>
@@ -97,9 +94,9 @@
 
     </section>
 
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-secondary">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Escape Game 2021</p>
+      <p class="m-0 text-center text-dark">Copyright &copy; Escape Game 2021</p>
     </div>
   </footer>
 

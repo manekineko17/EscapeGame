@@ -16,7 +16,7 @@
             <div>Ajouter un nouvel utilisateur
                 {# ?????? utile ou pas de vérifier ici si c'est un admin ?????? #}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_register')}}" class="btn btn-success">
+                    <a href="{{ path('app_register')}}" class="btn btn-outline-success">
                         <i class="fas fa-plus"></i>
                     </a>
                 {% endif %}
@@ -40,12 +40,12 @@
                         <td>{{ user.lastname }}</td>
                         <td>
                             <a onclick="return confirm('Voulez vous supprimer {{ user.firstname }}  {{ user.lastname }} ?')" 
-                            href="{{ path('admin_delete_user', { 'id': user.id} )}}" class="btn btn-danger">
+                            href="{{ path('admin_delete_user', { 'id': user.id} )}}" class="btn btn-outline-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="{{ path('admin_edit_user', { 'id': user.id} )}}" class="btn btn-success">Modifier</a>
+                            <a href="{{ path('admin_edit_user', { 'id': user.id} )}}" class="btn btn-outline-success">Modifier</a>
                         </td>
                     </tr>
                     {% endfor %}

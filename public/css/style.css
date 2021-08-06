@@ -1,4 +1,8 @@
-body
-{
+body {
 	font-family: 'Hind', sans-serif;
+}
+
+/*********** navbar *************/
+navbar .bonjour-user {
+	color: #e78200;
 }

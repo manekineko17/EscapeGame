@@ -20,45 +20,43 @@
 
     {% set route_name = app.request.attributes.get('_route') %}
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary text-dark">
+        <div class="container px-5" style="height: 10rem;">
             <a class="navbar-brand m-3" href="{{ path('home' )}}">
-                <span style="font-size: 30px; ">
-                    <img src="img/logo.png" alt="logo">
-                </span>
+                <img src="{{ asset('img/logo.png')}}" alt="logo" class="text-dark">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="collapse navbar-collapse text-dark" id="navbarResponsive">
                 
                 <ul class="navbar-nav ml-auto">
 
                 {%  if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_game' )}}">Gérer les games</a>
+                        <a class="nav-link text-dark h-3" href="{{ path('admin_game' )}}"><strong>Gérer les games</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_session')}}">Gérer les séances</a>
+                        <a class="nav-link text-dark h-3" href="{{ path('admin_session')}}"><strong>Gérer les séances</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_users' )}}">Gérer les utilisateurs</a>
+                        <a class="nav-link text-dark h-3" href="{{ path('admin_users' )}}"><strong>Gérer les utilisateurs</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="btn btn-outline-light" href="{{path('app_logout')}}">Me déconnecter <i class="fas fa-sign-out-alt"></i></a>   
+                        <a class="btn btn-outline-light text-dark h-3" href="{{path('app_logout')}}"><strong>Me déconnecter</strong><i class="fas fa-sign-out-alt"></i></a>   
                     </li>
 
                 {# user #}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('booking' )}}">Gérer mes réservations</a>
+                        <a class="nav-link text-dark h-3" href="{{ path('booking' )}}"><strong>Gérer mes réservations</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user' )}}">Gérer mon compte</a>
+                        <a class="nav-link text-dark h-3" href="{{ path('user' )}}"><strong>Gérer mon compte</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="btn btn-outline-light" href="{{path('app_logout')}}">Me déconnecter <i class="fas fa-sign-out-alt"></i></a>   
+                        <a class="btn btn-outline-dark text-dark h-3" href="{{path('app_logout')}}"><strong>Me déconnecter</strong><i class="fas fa-sign-out-alt"></i></a>   
                     </li>
 
                 {% endif %}
@@ -68,11 +66,11 @@
             {# <h3> #}
                 {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <span class="ml-4 badge badge-danger">Bonjour Admin</span>
+                    <span class="ml-4 my-2 mx-3 badge badge-danger text-dark text-center h-3 bonjour-user"><strong>Bonjour Admin</strong></span>
                 </li>
                 {% else %}
                 <li>
-                    {# <span class="ml-4 badge badge-success">Bonjour {{app.user.firstname}} {{app.user.lastname}}</span> #}
+                    {# <span class="ml-4 badge badge-success text-dark h-3 bonjour-user">Bonjour {{app.user.firstname}} {{app.user.lastname}}</span> #}
                 </li>
                 {% endif %}
             {# </h3> #}
@@ -87,9 +85,9 @@
 
 </section>
 
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-secondary">
 <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Escape Game 2021</p>
+    <p class="m-0 text-center text-dark">Copyright &copy; Escape Game 2021</p>
 </div>
 </footer>
     

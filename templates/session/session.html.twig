@@ -24,16 +24,16 @@
                     {% if day in dates_bdd|keys %}
                         {% if dates_bdd[day][i] == 0  %}
                             <td>
-                                <a href="#" class="btn btn-success">{{slots[i]}}</a>
+                                <a href="#" class="btn btn-outline-success">{{slots[i]}}</a>
                             </td>
                         {% else %}
                             <td >
-                                <span class="btn btn-danger">{{slots[i]}}</span>
+                                <span class="btn btn-outline-danger">{{slots[i]}}</span>
                             </td>
                         {% endif %}
                     {% else %}
                         <td>
-                            <a href="#" class="btn btn-success">{{slots[i]}}</a>
+                            <a href="#" class="btn btn-outline-success">{{slots[i]}}</a>
                         </td>
                     {% endif %}
                 {% endfor %} 

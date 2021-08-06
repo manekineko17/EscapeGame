@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Twig\Environment;
