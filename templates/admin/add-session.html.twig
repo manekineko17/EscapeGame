@@ -4,21 +4,22 @@
 
 {% block body %}
 <div class="row">
-			<div class="col-2"></div>
-                <div class="col-8">
-                    <br>
-                    <h3>Ajouter ou modifier une séance</h3>
-                    
-                        {{ form_start(addSessionForm) }}
-                            {{ form_widget(addSessionForm) }}
-                            <button type="submit" class="btn btn-outline-success" href="{{ path('admin_session')}}">
-                               Valider
-                            </button>
+    <div class="col">
+        <br>
+        <h1 class="my-3 text-center">Ajouter ou modifier une séance</h1>
+        
+        <div style="width: 50rem;">
+            {{ form_start(addSessionForm) }}
+                {{ form_widget(addSessionForm) }}
+                <button type="submit" class="btn btn-outline-success my-3" href="{{ path('admin_session')}}">
+                    Valider
+                </button>
 
-                            <br>
-                            <br>
-                        {{ form_end(addSessionForm) }}
-                </div>
-            </div>
+                <br>
+                <br>
+            {{ form_end(addSessionForm) }}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -4,33 +4,32 @@
 
 {% block body %}
 <div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-				<br>
-				<h3>Gérer les games</h3>
-			</div>
 
-            <br>
+	<h1 class="my-3 text-center">Gérer les games</h1>
 
-            <div>Rechercher un game
-                <input id="myInput" type="text" placeholder="Rechercher...">
-            </div>
-            <br>
-            <div>Ajouter un nouveau game
-                {# ?????? utile ou pas de vérifier ici si c'est un admin ?????? #}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('admin_add_game')}}" class="btn btn-success">
-                        Ajouter <i class="fas fa-plus"></i>
-                    </a>
-                {% endif %}
-            </div>
+    <br>
+
+        <div class="my-3">
+            <h2>Rechercher un game</h2>
+            <input id="myInput" type="text" placeholder="Rechercher...">
+        </div>
+        <br>
+        <div class="my-3">
+            <h2>Ajouter un nouveau game</h2>
+                <a href="{{ path('admin_add_game')}}" class="btn btn-outline-success">Ajouter</a>
+        </div>
+
+
+        <div class="text-center">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Titre de l'escape game</th>
+                        <th>Titre</th>
                         <th>Lieu</th>
                         <th>Durée</th>
-                        <th>Nombre de joueurs maximum</th>
+                        <th>Nombre max de joueurs</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="myTable">
@@ -42,24 +41,16 @@
                         <td>{{ game.playersMax }}</td>
                         <td>
                             <a onclick="return confirm('Voulez vous supprimer {{ game.title }}?')" 
-                            href="{{ path('delete_game', { 'id': game.id} )}}" class="btn btn-outline-danger">
-                                Supprimer  <i class="fas fa-trash"></i>
-                            </a>
+                            href="{{ path('delete_game', { 'id': game.id} )}}" class="btn btn-outline-danger">Supprimer</a>
                         </td>
                         <td>
-                            <a 
-                            href="{{ path('edit_game', { 'id': game.id} )}}" 
-                             class="btn btn-outline-success">
-                                Modifier  <i class="fas fa-edit"></i>
-                            </a>
+                            <a href="{{ path('edit_game', { 'id': game.id} )}}" class="btn btn-outline-success">Modifier</a>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-
-
-		</div>
-
+        </div>
+</div>
 
 {% endblock %}

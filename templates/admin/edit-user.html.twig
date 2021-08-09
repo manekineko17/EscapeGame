@@ -4,17 +4,20 @@
 
 {% block body %}
 <div class="row">
-			<div class="col-8">
-				<br>
-				<h3>Modifier un user</h3>
+	<div class="col">
+			<h1 class="my-3 text-center">Modifier un user</h1>
+
+			<div style="width: 50rem;">
+
 				{{ form_start(userForm) }}
 				{{ form_widget(userForm) }}
-				<button type="submit" class="btn btn-soutline-uccess" href="{{ path('admin_users')}}">
-					Valider
+				<button type="submit" class="btn btn-outline-success my-3" href="{{ path('admin_users')}}">Valider
 				</button>
-				<br><br>
+				<br>
 				{{ form_end(userForm) }}
+				
 			</div>
+	</div>	
 </div>
 
 {% endblock %}

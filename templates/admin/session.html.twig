@@ -4,18 +4,16 @@
 
 {% block body %}
 <div class="row">
-	<h1>Gérer les séances</h1>
+	<h1 class="my-3 text-center">Gérer les séances</h1>
 
+	<div class="my-2">
+		<h2>Ajouter une séance</h2>
+		<a href="{{ path('add_session')}}" class="btn btn-outline-success">Ajouter</a>
 	</div>
-		<a 
-		href="{{ path('add_session')}}" 
-			class="btn btn-success">
-			Ajouter une séance<i class="fas fa-plus"></i>
-		</a>
-	</div>
+
 	<div class="row">
 		
-		<table class="table table-bordered">
+		<table class="table table-bordered my-4 text-center">
 
 			<thead>
 			  <tr>
@@ -52,9 +50,6 @@
 			</tbody>
 		</table>
 		
-
-
-
 {% endblock %}
 
 
@@ -80,15 +75,3 @@
 </div>
 {% endfor %} #}
 
-{# {% if slot == getSlot10h() %}
-<td>  </td>
-{% else %}
-<td>{{ slot }}</td>
-{% endif %} #}
-
-	{# test
-		{% if 3 in [1,2,3,5] %}
-
-				<h1>321321321</h1>
-
-				{% endif %} #}

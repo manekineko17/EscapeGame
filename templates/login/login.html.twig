@@ -4,16 +4,21 @@
 
 {% block body %}
 <form method="post" class="form-signin">
- 
 
-    <h2 class="form-signin-heading">Connexion à mon compte</h2>
-    <label for="inputEmail">Email</label>
-    <input  type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+    <h2 class="form-signin-heading my-3 text-center">Connexion à mon compte</h2>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}">
+    <div style="width: 50rem;">
+        <label for="inputEmail">Email</label>
+
+        <input  type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+
+        <label for="inputPassword">Mot de passe</label>
+
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}">
+    
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -25,10 +30,9 @@
             </label>
         </div>
     #}
-    <br>
-    <button class="btn btn-lg btn-outline-success" type="submit">
-        Connexion
-    </button>
+        <button class="btn btn-lg btn-outline-success my-3" type="submit">Connexion</button>
+
+    </div>
 
        {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
