@@ -4,23 +4,22 @@
 
 {% block body %}
 
-<div class="example-wrapper">
+<div class="row">
+    <div class="col">
 
-    <h1>Mes réservations</h1>
-          
-        <p>Date : </p>
-        <p>Nom : </p>
-        <p>Nombre de personnes :</p>
-        <p>Lieu : </p>
-        <p>Durée :</p>
-        <p>
-            {# <a 
-            href="{{ path('edit_user', { 'id': user.id} )}}" 
-                class="btn btn-primary">
-                Modifier
-            </a> #}
-        </p>
+    <h1 class="text-center my-3">Mes réservations</h1>
 
-           
+    {# si connecté, montrer le récap de al réservation puis le paiement
+    sinon demander à se connecter ou à créer un compte pour valider la réservation #}
+    {# {{ if granted }}  #}
+    
+        <div class="mx-5">
+            <p>Date : </p>
+            <p>Nom : </p>
+            <p>Nombre de personnes :</p>
+            <p>Lieu : </p>
+            <p>Durée :</p>
+        </div>
+    </div>  
 </div>
 {% endblock %}

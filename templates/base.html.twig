@@ -4,10 +4,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="{{ asset("favicon.png") }}" />
-        <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&display=swap" rel="stylesheet">         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
         <title>
             {% block title %} Site Escape Game {% endblock %}
@@ -20,9 +23,9 @@
   {% set route_name = app.request.attributes.get('_route') %} 
       
         <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary text-dark">
-            <div class="container px-5" style="height: 10rem;">
-                <a class="navbar-brand m-3" href="{{ path('game' )}}">
-                    <img src="{{ asset('img/logo.png')}}" alt="logo" class="text-dark">
+            <div class="container" style="height: 7rem;">
+                <a class="navbar-brand m-auto" href="{{ path('game' )}}">
+                    <img src="{{ asset('img/logo1.png')}}" alt="logo" class="text-dark" style="height: 7em;">
                 </a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +34,7 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto m-auto">
 
                     <li class="nav-item   {% if route_name == "game" %}active{% endif %}">
                         <a class="nav-link text-dark h-3" href="{{ path('game' )}}"><strong>Accueil</strong>
@@ -55,7 +58,7 @@
                             <a class="btn btn-outline-light text-dark h-3" href="{{path('app_logout')}}"><strong>Me déconnecter</strong><i class="fas fa-sign-out-alt"></i></a>  
                         </li>
                         <li>
-                            <span class="ml-4 ms-3 mt-2 badge badge-success text-dark h-3 bonjour-user"><strong>Bonjour Admin</strong></span>
+                            <span class="ml-4 ms-3 mt-2 text-white h-3"><strong>Bonjour Admin</strong></span>
                         </li>
                     {%  elseif is_granted('ROLE_USER') %}
                         <li class="nav-item {% if route_name == "booking" %}active{% endif %}">
@@ -65,7 +68,7 @@
                             <a class="btn btn-outline-dark text-dark h-3" href="{{path('app_logout')}}"><strong>Me déconnecter</strong><i class="fas fa-sign-out-alt"></i></a>   
                         </li>
                         <li>
-                            <span class="ml-4 my-3 mt-5 badge badge-success text-dark h-3 bonjour-user"><strong>Bonjour {{app.user.firstname}} {{app.user.lastname}}</strong></span>
+                            <span class="ml-4 my-3 mt-5 h-3 text-white"><strong>Bonjour {{app.user.firstname}} {{app.user.lastname}}</strong></span>
                         </li>
                     {% else %}
                         <li class="nav-item {% if route_name == "app_login" %}active{% endif %}">

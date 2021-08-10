@@ -4,27 +4,27 @@
 
 {% block body %}
 
-    <h1 class="my-3 text-center">Gérer les utilisateurs</h1>
+    <h1 class="my-5 text-center">Gérer les utilisateurs</h1>
 
-        <div>
+    <div class="row">
+        <div class="col">
             <h2>Rechercher un utilisateur</h2>
             <input id="myInput" type="text" placeholder="Rechercher...">
         </div>
-
-        <br>
-
-        <div>
-            <h2>Ajouter un nouvel utilisateur</h2>
-            {# ?????? utile ou pas de vérifier ici si c'est un admin ?????? #}
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_register')}}" class="btn btn-outline-success">Ajouter</a>
-            {% endif %}
+        <div class="col">
+            <div class="row">
+                <div class="col-8">
+                    <h2>Ajouter un nouvel utilisateur</h2>
+                </div>
+                <div class="col">
+                    <a href="{{ path('app_register')}}" class="btn btn-outline-success">Ajouter</a>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <br>
-
-        <div class="row">
-            <h2>Liste des utilisateurs</h2>
+        <div class="my-5">
+            <h2 class="text-center mb-3">Liste des utilisateurs</h2>
             <table class="table mt-2 table-striped text-center">
                 <thead>
                     <tr>

@@ -5,8 +5,10 @@
 {% block body %}
 
 <h1 class="my-3 text-center">Choisissez une séance</h1>
+<p id="demo1"></p>
 
-<table class="table table-bordered">
+
+<table class="table table-bordered text-center">
 
     <thead>
       <tr>
@@ -19,12 +21,11 @@
     <tbody>
         {% for i in 0..7 %}
             <tr>
-
                 {% for day,slots in dates %}
                     {% if day in dates_bdd|keys %}
                         {% if dates_bdd[day][i] == 0  %}
                             <td>
-                                <a href="#" class="btn btn-outline-success">{{slots[i]}}</a>
+                                <a href="#" onclick="selectSession()" class="btn btn-outline-success">{{slots[i]}}</a>
                             </td>
                         {% else %}
                             <td >
@@ -33,41 +34,45 @@
                         {% endif %}
                     {% else %}
                         <td>
-                            <a href="#" class="btn btn-outline-success">{{slots[i]}}</a>
+                            <a href="#" onclick="selectSession()" class="btn btn-outline-success">{{slots[i]}}</a>
                         </td>
                     {% endif %}
                 {% endfor %} 
-
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<section data-model="products">
-	<div class="container">
-	<div class="row">
+<div class="container">
+    <div class="my-3">
 
-        <h3>Nombre de participants</h3>
+        <div class="my-5">
+            <h3>Nombre de participants (de 2 à 6 joueurs)</h3>
+            <div class="control">
 
-        <div class="control">
-            <button class="bttn bttn-left" id="minus">
-               <span>-</span>
-            </button>
-            <input type="number" class="input" id="input">
-            <button class="bttn bttn-right" id="plus">
-              <span>+</span>
-            </button>
-            <button class="btn btn-success">Appliquer</button>
-        </div>
-        <h3>Tarif total</h3>
-        <div>  
-            <input data-field="item-total-price" type=text value="0.00" readonly>           
-            <button class="btn btn-success">Réserver</button>
+                <input type="number" min="2" max="6" class="input" id="nbr_personnes">
+
+                <button id="appli" class="btn btn-outline-success mx-3">Appliquer</button>
+            </div>
         </div>
 
-	</div>
-	</div>
-</section>
+        <div class="my-5">
+            <h3>Tarif par participants : 
+                <span id="perPlayer"></span>
+            </h3>
+        </div>
+            
+        <div class="my-5">
+            <h3>Tarif total</h3>
+            <div>  
+                <input data-field="item-total-price" type="number" id="totalPrice" value="0" readonly>
+                       
+                <a href="{{ path('booking') }}" class="btn btn-outline-success mx-3">Réserver</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
@@ -75,24 +80,25 @@
 {% block script %}
     {{ parent() }}
     <script>
-        var minus = document.querySelector("#minus");
-        var plus = document.querySelector("#plus");
-        var input = document.querySelector("#input");
+   
+        //nb of person
+        document.getElementById("appli").addEventListener("click", nbPlayer); 
+        var input = document.querySelector("#nbr_personnes");
         var quantity = 1;
-
         input.value = quantity;
 
-        minus.addEventListener('click', function(event){
-        if (quantity > 1) {
-            quantity --;
-            input.value = quantity;
+        // function selectSession() {
+        //     document.getElementById("demo1").innerHTML = "Hello World";
+        // }
+
+        //price per person and total price
+        function nbPlayer() {
+            var tarif = [26,24,22,20,18,16];
+            var nbr_personnes=parseFloat(document.getElementById("nbr_personnes").value);
+            document.getElementById("perPlayer").innerHTML = tarif[nbr_personnes-1];
+            document.getElementById("totalPrice").value = nbr_personnes*tarif[nbr_personnes-1];
         }
-        });
 
-        plus.addEventListener('click', function(event){
-        quantity ++;
-        input.value = quantity;
-        });
     </script>
 {% endblock %}
 

@@ -5,22 +5,30 @@
 {% block body %}
 <div class="row">
 
-	<h1 class="my-3 text-center">Gérer les games</h1>
+	<h1 class="mt-5 mb-5 text-center">Gérer les games</h1>
 
     <br>
 
-        <div class="my-3">
-            <h2>Rechercher un game</h2>
+    <div class="row">
+        <div class="col">
+            <h3 class="mb-3">Rechercher un game</h3>
             <input id="myInput" type="text" placeholder="Rechercher...">
         </div>
         <br>
-        <div class="my-3">
-            <h2>Ajouter un nouveau game</h2>
-                <a href="{{ path('admin_add_game')}}" class="btn btn-outline-success">Ajouter</a>
+        <div class="col">
+            <div class="row">
+                <div class="col-8">
+                    <h3>Ajouter un nouveau game</h3>
+                </div>
+                <div class="col">
+                    <a href="{{ path('admin_add_game')}}" class="btn btn-outline-success">Ajouter</a>
+                </div>
+            </div>
         </div>
+    </div>
 
 
-        <div class="text-center">
+        <div class="text-center my-5">
             <table class="table table-striped">
                 <thead>
                     <tr>

@@ -7,20 +7,20 @@
 
     <h1 class="my-3 text-center">Nos escape games</h1>
 
-    <div class="d-flex">
-        <div class="row align-items-start justify-content-evenly g-2">
-            <div class="col col-sm-12 col-md-6 col-lg-3">
+    <div class="container">
+        <div class="row mb-3">
 
                 {% for game in games %}
+                <div class="col game-list">
 
-                    <div class="card my-3" style="width: 30rem;">
+                    <div class="card my-3 m-auto" style="width: 30rem;">
                         <img src="{{ game.photo }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ game.title }}</h5>
-                            <p>Lieu : {{ game.place }}</p>
-                            <p>Durée : {{ game.duration }}</p>
-                            <p>Nombre maximum de joueurs : {{ game.playersMax }}</p>
-                            <p class="card-text text-justify">{{ game.description }}</p>
+                            <h2 class="card-title text-center"><strong>{{ game.title }}</strong></h2>
+                            <p><strong>Lieu : </strong>{{ game.place }}</p>
+                            <p><strong>Durée : </strong>{{ game.duration }}</p>
+                            <p><strong>Nombre de joueurs : </strong>{{ game.playersMax }}</p>
+                            <p class="card-text"><em>{{ game.description }}</em></p>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto mb-4 mt-2">
                             <a href="{{ path('session')}}" class="btn btn-outline-success">Réserver</a>

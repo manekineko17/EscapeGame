@@ -4,22 +4,14 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Modifier mon compte</h1>
+<div class="row">
+    <h1 class="text-center my-3">Modifier mon compte</h1>
 
-    <div class="col-8">
-        <br>
+    <div class="col-8 my-3" style="width: 40rem;">
         {{ form_start(userForm) }}
         {{ form_widget(userForm) }}
-        <button type="submit" class="btn btn-success">
-            Enregistrer
-        </button>
-        <br><br>
+        <button type="submit" class="btn btn-outline-success my-3">Enregistrer</button>
         {{ form_end(userForm) }}
     </div>
-
-                {# <p>Email : {{ user.email }}</p>
-                <p>Prénom : {{ user.firstname }}</p>
-                <p>Nom : {{ user.lastname }}</p> #}
 </div>
 {% endblock %}
