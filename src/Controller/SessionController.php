@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Session;
 use App\Repository\DayRepository;
-use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SessionController extends AbstractController
 {
     #[Route('/session', name: 'session')]
-    public function index(DayRepository $repo): Response
+    public function index(DayRepository $repo, EntityManagerInterface $em): Response
     {
         $days_bdd = $repo->findAll();
         $beginDate = new \DateTime('2021-08-02');
@@ -43,20 +41,10 @@ class SessionController extends AbstractController
             $dates_bdd[$key] = [$not_available->getSlot9h(), $not_available->getSlot10h(), $not_available->getSlot11h(), $not_available->getSlot12h(), $not_available->getSlot14h(), $not_available->getSlot15h(), $not_available->getSlot16h(), $not_available->getSlot17h()];
         }
 
-        //nb de participants
-
-
-        //prix total
-
-        //validation réservation
-
-
-
         return $this->render('session/session.html.twig', [
             'sessions' => $days_bdd,
             'dates' => $dates,
             'dates_bdd' => $dates_bdd,
-
         ]);
     }
 }

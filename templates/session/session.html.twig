@@ -4,100 +4,118 @@
 
 {% block body %}
 
-<h1 class="my-3 text-center">Choisissez une séance</h1>
-<p id="demo1"></p>
+<section>
+    <h1 class="my-5 text-center">Choisissez une séance</h1>
 
+    <table class="table table-bordered text-center">
 
-<table class="table table-bordered text-center">
+        <thead>
+        <tr>
+            {% for day,slots in dates %}
+                <th>{{ day }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
 
-    <thead>
-      <tr>
-        {% for day,slots in dates %}
-            <th>{{ day }}</th>
-        {% endfor %}
-      </tr>
-    </thead>
-
-    <tbody>
-        {% for i in 0..7 %}
-            <tr>
-                {% for day,slots in dates %}
-                    {% if day in dates_bdd|keys %}
-                        {% if dates_bdd[day][i] == 0  %}
-                            <td>
-                                <a href="#" onclick="selectSession()" class="btn btn-outline-success">{{slots[i]}}</a>
-                            </td>
+        <tbody>
+            {% for i in 0..7 %}
+                <tr>
+                    {% for day,slots in dates %}
+                        {% if day in dates_bdd|keys %}
+                            {% if dates_bdd[day][i] == 0  %}
+                                <td>
+                                    <a href="#" class="btn btn-outline-success booking" date="{{day}}">{{slots[i]}}</a>
+                                </td>
+                            {% else %}
+                                <td >
+                                    <span class="btn btn-outline-danger">{{slots[i]}}</span>
+                                </td>
+                            {% endif %}
                         {% else %}
-                            <td >
-                                <span class="btn btn-outline-danger">{{slots[i]}}</span>
+                            <td>
+                                <a href="#" class="btn btn-outline-success booking" date="{{day}}" >{{slots[i]}}</a>
                             </td>
                         {% endif %}
-                    {% else %}
-                        <td>
-                            <a href="#" onclick="selectSession()" class="btn btn-outline-success">{{slots[i]}}</a>
-                        </td>
-                    {% endif %}
-                {% endfor %} 
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                    {% endfor %} 
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 
-<div class="container">
-    <div class="my-3">
+<section class="container">
+    <div class="col my-3">
 
-        <div class="my-5">
+        <div class="row text-center my-5">
             <h3>Nombre de participants (de 2 à 6 joueurs)</h3>
             <div class="control">
-
-                <input type="number" min="2" max="6" class="input" id="nbr_personnes">
-
+                <input type="number" min="2" max="6" class="input text-center" id="nbr_personnes" style="width:5em;">
                 <button id="appli" class="btn btn-outline-success mx-3">Appliquer</button>
             </div>
         </div>
 
-        <div class="my-5">
-            <h3>Tarif par participants : 
-                <span id="perPlayer"></span>
-            </h3>
+        <div class="row text-center my-5">
+            <h3>Tarif par participants </h3>
+            <div>
+                <input class="mb-3 text-center" style="width:5em;" type="text" id="perPlayer" value="0" readonly>  € / joueurs
+            </div>
         </div>
             
-        <div class="my-5">
-            <h3>Tarif total</h3>
+        <div class="row text-center my-5">
+            <h3>Soit au total </h3>
             <div>  
-                <input data-field="item-total-price" type="number" id="totalPrice" value="0" readonly>
-                       
-                <a href="{{ path('booking') }}" class="btn btn-outline-success mx-3">Réserver</a>
-                
+                <form action="/user/booking" method="post">
+                    <input type="hidden" name="date" id="date_jeu" value="0">
+                    <input type="hidden" name="heure" id="slot_jeu" value="0">
+                    <input class="mb-3 text-center" style="width:5em;" type="text" id="totalPrice" value="0" readonly>  € TTC
+                    <button type="submit" href="{{ path('booking') }}" class="btn btn-outline-success mx-3">Réserver</button>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 
 {% endblock %}
 
 {% block script %}
     {{ parent() }}
-    <script>
    
+    <script>
+
+        $(document).ready(function(){
+            $(".booking").click(function(){
+                $("#date_jeu").val($(this).attr("date"));
+                $("#slot_jeu").val($(this).html());
+            })
+        })
+
         //nb of person
         document.getElementById("appli").addEventListener("click", nbPlayer); 
+
         var input = document.querySelector("#nbr_personnes");
         var quantity = 1;
         input.value = quantity;
 
-        // function selectSession() {
-        //     document.getElementById("demo1").innerHTML = "Hello World";
+        //booking button
+        // document.getElementsByClassName("booking").addEventListener("click", function(event){
+        //     console.log(this);
+        // }); 
+
+        // function selectSession(event) {
+        //     console.log(event);
+        //     document.getElementById("booking").style.background='#06D6A0';
         // }
 
         //price per person and total price
         function nbPlayer() {
             var tarif = [26,24,22,20,18,16];
             var nbr_personnes=parseFloat(document.getElementById("nbr_personnes").value);
-            document.getElementById("perPlayer").innerHTML = tarif[nbr_personnes-1];
+            document.getElementById("perPlayer").value = tarif[nbr_personnes-1];
             document.getElementById("totalPrice").value = nbr_personnes*tarif[nbr_personnes-1];
         }
+
+        $.session.set('totalPrice', 'totalPrice');
 
     </script>
 {% endblock %}

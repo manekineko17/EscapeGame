@@ -21,12 +21,13 @@
 
     {% set route_name = app.request.attributes.get('_route') %}
     
-    <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary text-dark">
+    <nav class="navbar navbar-expand-lg navbar-light text-dark" style="background-color: #206323b7;">
         <div class="container" style="height: 7rem;">
             <a class="navbar-brand m-auto" href="{{ path('game' )}}">
                 <img src="{{ asset('img/logo1.png')}}" alt="logo" class="text-dark" style="height: 7rem;">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler menu-burger" type="button" data-toggle="collapse" data-target="#navbarResponsive" 
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -86,7 +87,7 @@
 
 </section>
 
-<footer class="py-5 bg-secondary">
+<footer class="py-5" style="background-color: #206323b7;">
 <div class="container">
     <p class="m-0 text-center text-dark">Copyright &copy; Escape Game 2021</p>
 </div>

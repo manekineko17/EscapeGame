@@ -4,22 +4,49 @@
 
 {% block body %}
 
-<div class="row">
+<div class="row mb-5 mt-3">
     <div class="col">
 
-    <h1 class="text-center my-3">Mes réservations</h1>
-
-    {# si connecté, montrer le récap de al réservation puis le paiement
-    sinon demander à se connecter ou à créer un compte pour valider la réservation #}
-    {# {{ if granted }}  #}
-    
-        <div class="mx-5">
+        <h1 class="text-center my-5">Ma réservation</h1>
+                                
             <p>Date : </p>
-            <p>Nom : </p>
-            <p>Nombre de personnes :</p>
+
+            <p>Nom de l'escape game : </p>
+
+            <p>Réservé par : </p>
+
+            <p>Nombre de personnes : </p>
+
             <p>Lieu : </p>
-            <p>Durée :</p>
-        </div>
+
+            <p>Durée : </p>
+
+            <span>
+                <p>Prix total</p>
+                <input class="mb-3 text-center" style="width:5em;" type="text" id="totalPrice" value="0" readonly>  € TTC
+            </span>
+            
+            <span>
+                {# <button type="submit" href="{{ path('pdf')}}" class="btn btn-outline-success mx-3" style="width: 20em;">Télécharger le récapitulatif</button> #}
+                <a href="{{ path('pdf')}}" class="btn btn-outline-success mx-3" style="width: 20em;">Télécharger le récapitulatif</a>
+            </span> 
+
+            <p>Paiement</p>
+   
     </div>  
 </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+   
+    $.session.get('totalPrice');
+    document.getElementById("totalPrice").value;
+
+
+</script>
+
 {% endblock %}
